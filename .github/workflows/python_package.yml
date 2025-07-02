@@ -1,4 +1,4 @@
-name: RoastMe Test Suite 🔥
+name: Python package
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  test-and-publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,8 +21,18 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install -e .    # 👈 This installs your local roastme package in editable mode
         pip install pytest
 
     - name: Run tests
-      run: |
-        pytest
+      run: pytest
+
+    - name: Build package
+      run: python -m build
+
+    - name: Publish to PyPI
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      run: twine upload dist/*
