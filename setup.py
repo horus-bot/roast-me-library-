@@ -4,8 +4,8 @@ setup(
     name='roastme',
     version='0.1.0',
     description='Drop savage roasts with a single line of code',
-    author='Harsh the Roast Lord',
-    author_email='your_email@example.com',
+    author='Harsh srivastava',
+    author_email='blueharsh2@gmail.com',
     packages=find_packages(),
     python_requires='>=3.6',
     classifiers=[
