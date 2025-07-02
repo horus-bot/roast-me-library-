@@ -3,7 +3,7 @@ name: RoastMe Package CI/CD
 on:
   push:
     tags:
-      - 'v*'   # Triggers only when a tag like v0.1.0 is pushed
+      - 'v*'   
 
 jobs:
   build-test-publish:
